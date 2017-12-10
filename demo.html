@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title></title>
+    <style type="text/css">
+        #other{
+            background-color: aqua;
+            height:1000px;
+            width: 100%;
+            background-size: cover;
+        }
+        #ad-roll{
+            width:300px;
+            height:auto;
+            color:#fff;
+            background-color: aquamarine;
+            position:absolute;
+        }
+        #ad-roll img{
+            width:100%;
+            height:50%;
+        }
+    </style>
+</head>
+<body>
+<div id="other">
+
+</div>
+<div id="ad-roll">
+    <a href="http://www.baidu.com">
+        <img src="1.jpg" alt="图片">
+    </a>
+</div>
+<script type="text/javascript">
+    var adRoll = {
+        roll : document.getElementById("ad-roll"),
+        speed : 10,
+        statusX : 1,
+        statusY : 1,
+        x : 100,
+        y : 300,
+        winW : document.documentElement.clientWidth - document.getElementById("ad-roll").offsetWidth,
+        winH : document.documentElement.clientHeight - document.getElementById("ad-roll").offsetHeight,
+        Go : function(){
+            this.roll.style.left=this.x+'px';
+            this.roll.style.top=this.y+'px';
+
+            this.x = this.x + (this.statusX? -1: 1)
+            if(this.x < 0) {this.statusX = 0}
+            if(this.x > this.winW) {this.statusX = 1}
+
+            this.y = this.y + (this.statusY? -1: 1)
+            if(this.y < 0) {this.statusY = 0}
+            if(this.y > this.winH) {this.statusY = 1}
+        }
+    }
+    var interval = setInterval("adRoll.Go()", adRoll.speed);
+    adRoll.roll.onmouseover = function(){clearInterval(interval)};
+    adRoll.roll.onmouseout = function(){interval = setInterval("adRoll.Go()", adRoll.speed)};
+</script>
+</body>
+</html>
