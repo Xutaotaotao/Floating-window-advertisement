@@ -5,11 +5,11 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title></title>
+    <title>页面浮动广告demo</title>
     <style type="text/css">
         #other{
             background-color: aqua;
-            height:1000px;
+            height:700px;
             width: 100%;
             background-size: cover;
         }
@@ -49,15 +49,15 @@
             this.roll.style.left=this.x+'px';
             this.roll.style.top=this.y+'px';
 
-            this.x = this.x + (this.statusX? -1: 1)
+            this.x = this.x + (this.statusX? -1: 1);
             if(this.x < 0) {this.statusX = 0}
             if(this.x > this.winW) {this.statusX = 1}
 
-            this.y = this.y + (this.statusY? -1: 1)
+            this.y = this.y + (this.statusY? -1: 1);
             if(this.y < 0) {this.statusY = 0}
             if(this.y > this.winH) {this.statusY = 1}
         }
-    }
+    };
     var interval = setInterval("adRoll.Go()", adRoll.speed);
     adRoll.roll.onmouseover = function(){clearInterval(interval)};
     adRoll.roll.onmouseout = function(){interval = setInterval("adRoll.Go()", adRoll.speed)};
